@@ -35,6 +35,11 @@ app.get('/api/persons/:id', (req, res) => {
     person ? res.json(person) : res.status(404).send({error : "no entry with id " + req.params.id })
 })
 
+app.delete('/api/persons/:id', (req, res) => {
+    persons = persons.filter(person => person.id.toString() != req.params.id)
+    res.status(204).end()
+})
+
 app.get('/info', (req, res) => {
     res.send('<p>Puhelinluettelossa ' + persons.length + ' henkilön tiedot<p>' + new Date())
 })
