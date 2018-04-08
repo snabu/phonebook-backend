@@ -28,6 +28,13 @@ app.get('/api/persons', (req, res) => {
     res.json(persons)
 })
 
+app.get('/api/persons/:id', (req, res) => {
+    const person = persons.find(person =>{
+        return person.id.toString() === req.params.id
+    } )
+    person ? res.json(person) : res.status(404).send({error : "no entry with id " + req.params.id })
+})
+
 app.get('/info', (req, res) => {
     res.send('<p>Puhelinluettelossa ' + persons.length + ' henkilön tiedot<p>' + new Date())
 })
