@@ -33,11 +33,28 @@ app.get('/api/persons', (req, res) => {
 
 
 app.post('/api/persons', (req, res) => {
+    console.log(req.body)
+    if (req.body === undefined) {
+        return res.status(400).json({error: 'content missing'})
+    }
     const person = req.body
+    if (!person.name ) {
+        return res.status(400).json({error: 'person.name missing'})
+    }
+    if (!person.number ) {
+        return res.status(400).json({error: 'person.number missing'})
+    }
+
+    const index = persons.findIndex(function(person) {
+        return person.name.toLowerCase() === name.toLowerCase()
+    }, name=person.name)
+
+    if (index > -1) {
+        return res.status(409).json({error : 'person with name ' + person.name + ' already exists'})
+    }
     person.id = Math.floor(Math.random() * Math.floor(100000000));
-    console.log('person is ', person)
     persons = persons.concat(person)
-    res.json(persons)
+    res.status(201).json(person)
 })
 
 app.get('/api/persons/:id', (req, res) => {
