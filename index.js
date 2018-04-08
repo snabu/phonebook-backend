@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const morgan = require('morgan')
 
 let persons = [
     {
@@ -25,6 +26,7 @@ let persons = [
     }
 ]
 
+app.use(morgan('tiny'))
 app.use(bodyParser.json())
 
 app.get('/api/persons', (req, res) => {
@@ -33,7 +35,6 @@ app.get('/api/persons', (req, res) => {
 
 
 app.post('/api/persons', (req, res) => {
-    console.log(req.body)
     if (req.body === undefined) {
         return res.status(400).json({error: 'content missing'})
     }
