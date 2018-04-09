@@ -26,8 +26,11 @@ let persons = [
     }
 ]
 
-app.use(morgan('tiny'))
+
 app.use(bodyParser.json())
+
+morgan.token('payload', function (req, res) { return JSON.stringify(req.body)})
+app.use(morgan(':method :url :payload :status :res[content-length] - :response-time ms'))
 
 app.get('/api/persons', (req, res) => {
     res.json(persons)
