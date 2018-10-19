@@ -10,7 +10,7 @@ const personSchema = mongoose.model('Person', {
     number: String
 })
 
-personSchema.format = function(person) {
+personSchema.format = (person) => {
     return {
         name : person.name,
         number : person.number,
