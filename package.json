@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node index",
-    "watch": "nodemon index.js"
+    "watch": "nodemon index.js",
+    "lint": "eslint ."
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -17,6 +18,7 @@
     "morgan": "^1.9.0"
   },
   "devDependencies": {
+    "eslint": "^5.7.0",
     "nodemon": "^1.17.3"
   }
 }

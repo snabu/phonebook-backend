@@ -18,7 +18,7 @@ app.get('/api/persons', (req, res) => {
     Person
         .find({})
         .then(persons => {
-            console.log("puhelinluettelo:")
+            console.log('puhelinluettelo:')
             persons.map(person => {
                 console.log(Person.format(person))
             })
@@ -92,7 +92,7 @@ app.get('/api/persons/:id', (req, res) => {
             res.json(Person.format(person))
         })
         .catch(err => {
-            res.status(404).send({error : "no entry with id " + req.params.id })
+            res.status(404).send({error : 'no entry with id ' + req.params.id })
         })
 })
 
